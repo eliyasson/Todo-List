@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <h1>Adding and Removing Player</h1>
+    <form>
+        <input type="text" placeholder="Enter Player" name="text" id="txt"
+        required>
+        <button type="submit" class="btn-list ">Add Player
+            
+        </button>
+    </form>
+    <div class="container">
+        <ul>
+            
+        </ul>
+    </div>
+    <script>
+        const inputText = document.querySelector('#txt');
+        const myButton = document.querySelector('.btn-list');
+        const list = document.querySelector('.container ul');
+        myButton.addEventListener('click', (e) => {
+            if(inputText.value != "") {
+                e.preventDefault(); 
+                //creat li
+                const myLi = document.createElement('li');
+                myLi.innerHTML = inputText.value;
+                list.appendChild(myLi);
+                //creat span
+                const mySpan = document.createElement('span');
+                mySpan.style.float='right';
+                mySpan.style.color='red';
+                mySpan.innerHTML = "Delete";
+                myLi.appendChild(mySpan);
+            }
+            inputText.value = "";
+            const close = document.querySelectorAll('span');
+            for(let i=0; i<close.length; i++) {
+                close[i].addEventListener('click', () => {
+                    close[i].parentElement.style.display = "none";
+                })
+            }
+        });
+    </script>
+</body>
+</html>
